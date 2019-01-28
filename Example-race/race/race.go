@@ -20,7 +20,7 @@ func main() {
 	for i := 0; i < gs; i++ {
 		go func() {
 			v := counter
-			runtime.Gosched()
+			runtime.Gosched() // Gosched yields the processor, allowing other goroutines to run.
 			v++
 			counter = v
 			wg.Done()
@@ -35,4 +35,4 @@ func main() {
 
 }
 
-//go run -race race/race.go
+//go run -race Example-race\race\race.go

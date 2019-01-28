@@ -23,7 +23,7 @@ func main() {
 		go func() {
 			mu.Lock()
 			v := counter
-			runtime.Gosched()
+			runtime.Gosched() // Gosched yields the processor, allowing other goroutines to run.
 			v++
 			counter = v
 			mu.Unlock()
