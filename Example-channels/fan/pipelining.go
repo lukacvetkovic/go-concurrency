@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func consume() <-chan int {
 
@@ -28,13 +30,26 @@ func process(input <-chan int) <-chan int {
 	return out
 }
 
+const processNumber int = 4
+
 func main() {
 
 	consumedMessages := consume()
 
-	processedMessages := process(consumedMessages)
+	/////////////////////////////////////////////////////////
+	channelsForProcessing := FanOut(consumedMessages, processNumber)
 
-	for message := range processedMessages {
+	processedMessagesChannels := make([]<-chan int, 0, processNumber)
+
+	for i := 0; i < processNumber; i++ {
+		processed := process(channelsForProcessing[i])
+		processedMessagesChannels = append(processedMessagesChannels, processed)
+	}
+	/////////////////////////////////////////////////////////
+
+	aggregate := FanIn(processedMessagesChannels...)
+
+	for message := range aggregate {
 		fmt.Println(message)
 	}
 
