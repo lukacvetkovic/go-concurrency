@@ -39,4 +39,4 @@ func main() {
 
 }
 
-//go run -race race/race.go
+//go run -race

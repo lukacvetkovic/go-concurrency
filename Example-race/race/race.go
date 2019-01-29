@@ -35,4 +35,4 @@ func main() {
 
 }
 
-//go run -race Example-race\race\race.go
+//go run -race

@@ -11,7 +11,7 @@ func main() {
 	fmt.Println("CPUs\t\t", runtime.NumCPU())
 	fmt.Println("Gorutines\t", runtime.NumGoroutine())
 
-	go foo()
+	foo()
 	bar()
 
 	fmt.Println("CPUs\t\t", runtime.NumCPU())

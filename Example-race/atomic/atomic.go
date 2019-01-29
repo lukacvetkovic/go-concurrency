@@ -25,7 +25,6 @@ func main() {
 			fmt.Println("Counter: ", atomic.LoadInt32(&counter))
 			wg.Done()
 		}()
-		// fmt.Println("Gorutines\t", runtime.NumGoroutine())
 	}
 
 	wg.Wait()
@@ -35,4 +34,4 @@ func main() {
 
 }
 
-//go run -race race/race.go
+//go run -race
