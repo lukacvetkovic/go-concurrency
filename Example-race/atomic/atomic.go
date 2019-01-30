@@ -20,9 +20,8 @@ func main() {
 
 	for i := 0; i < gs; i++ {
 		go func() {
-			atomic.AddInt32(&counter, 1)
 			runtime.Gosched() // Gosched yields the processor, allowing other goroutines to run.
-			fmt.Println("Counter: ", atomic.LoadInt32(&counter))
+			atomic.AddInt32(&counter, 1)
 			wg.Done()
 		}()
 	}
